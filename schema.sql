@@ -1,0 +1,37 @@
+CREATE TABLE IF NOT EXISTS settings (
+  id INTEGER PRIMARY KEY CHECK (id = 1),
+  monthly_amount INTEGER NOT NULL DEFAULT 0,
+  admin_pin TEXT NOT NULL DEFAULT '1234'
+);
+
+INSERT OR IGNORE INTO settings
+(id, monthly_amount, admin_pin)
+VALUES (1, 0, '1234');
+
+CREATE TABLE IF NOT EXISTS members (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  phone TEXT NOT NULL UNIQUE,
+  active INTEGER NOT NULL DEFAULT 1,
+  won INTEGER NOT NULL DEFAULT 0,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS months (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  month_name TEXT NOT NULL UNIQUE,
+  winner_id INTEGER,
+  drawn_at TEXT,
+  FOREIGN KEY (winner_id) REFERENCES members(id)
+);
+
+CREATE TABLE IF NOT EXISTS payments (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  member_id INTEGER NOT NULL,
+  month_id INTEGER NOT NULL,
+  paid INTEGER NOT NULL DEFAULT 0,
+  paid_at TEXT,
+  UNIQUE(member_id, month_id),
+  FOREIGN KEY (member_id) REFERENCES members(id),
+  FOREIGN KEY (month_id) REFERENCES months(id)
+);
