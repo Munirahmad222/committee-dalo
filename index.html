@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>کمیٹی ڈالو</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <img src="logo.png" alt="کمیٹی ڈالو" class="logo">
+    <h1>کمیٹی ڈالو</h1>
+    <p>ماہانہ کمیٹی مینجمنٹ سسٹم</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>ماہانہ کمیٹی</h2>
+
+      <form id="settingsForm">
+        <input
+          id="monthlyAmount"
+          type="number"
+          placeholder="ماہانہ کمیٹی کی رقم"
+          required
+        >
+
+        <input
+          id="adminPin"
+          type="password"
+          placeholder="Admin PIN"
+          required
+        >
+
+        <button>رقم محفوظ کریں</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>نیا ممبر شامل کریں</h2>
+
+      <form id="memberForm">
+        <input
+          id="memberName"
+          type="text"
+          placeholder="ممبر کا نام"
+          required
+        >
+
+        <input
+          id="memberPhone"
+          type="tel"
+          placeholder="03XXXXXXXXX"
+          pattern="(03[0-9]{9}|\+923[0-9]{9})"
+          required
+        >
+
+        <button>ممبر شامل کریں</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>نیا مہینہ</h2>
+
+      <form id="monthForm">
+        <input
+          id="monthName"
+          type="text"
+          placeholder="مثلاً اگست 2026"
+          required
+        >
+
+        <button>مہینہ شروع کریں</button>
+      </form>
+    </section>
+
+    <section class="stats">
+      <div>
+        <b id="totalMembers">0</b>
+        <span>کل ممبران</span>
+      </div>
+
+      <div>
+        <b id="paidMembers">0</b>
+        <span>ادا شدہ</span>
+      </div>
+
+      <div>
+        <b id="unpaidMembers">0</b>
+        <span>بقایا</span>
+      </div>
+
+      <div>
+        <b id="totalAmount">0</b>
+        <span>کل رقم</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="currentMonth">موجودہ مہینہ</h2>
+
+      <div class="tableWrap">
+        <table>
+          <thead>
+            <tr>
+              <th>نام</th>
+              <th>موبائل</th>
+              <th>ادائیگی</th>
+              <th>حالت</th>
+            </tr>
+          </thead>
+          <tbody id="membersTable"></tbody>
+        </table>
+      </div>
+
+      <button id="drawButton" class="draw">
+        قرعہ‌اندازی کریں
+      </button>
+
+      <div id="winnerBox" class="winner"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
