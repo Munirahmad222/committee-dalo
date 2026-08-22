@@ -1,0 +1,173 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f1f5f9;
+  color: #172033;
+  font-family: Arial, Tahoma, sans-serif;
+}
+
+header {
+  padding: 28px 15px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(135deg, #075e54, #128c7e);
+}
+
+header .logo {
+  width: 84px;
+  height: 84px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  box-shadow: 0 4px 14px #00000030;
+}
+
+header h1 {
+  margin: 0 0 8px;
+  font-size: 34px;
+}
+
+header p {
+  margin: 0;
+}
+
+main {
+  width: min(1100px, 94%);
+  margin: 22px auto;
+}
+
+.card {
+  margin-bottom: 18px;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px #00000012;
+}
+
+h2 {
+  margin-top: 0;
+  color: #075e54;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 10px;
+}
+
+input,
+button {
+  min-height: 44px;
+  padding: 10px 13px;
+  border-radius: 9px;
+  font-size: 15px;
+}
+
+input {
+  border: 1px solid #cbd5e1;
+}
+
+button {
+  border: 0;
+  color: white;
+  background: #075e54;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #054c44;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.stats div {
+  padding: 18px 10px;
+  text-align: center;
+  color: white;
+  background: #128c7e;
+  border-radius: 14px;
+}
+
+.stats b,
+.stats span {
+  display: block;
+}
+
+.stats b {
+  font-size: 25px;
+  margin-bottom: 6px;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px 8px;
+  text-align: right;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+  color: #075e54;
+}
+
+.paid {
+  color: #15803d;
+  font-weight: bold;
+}
+
+.unpaid {
+  color: #b91c1c;
+  font-weight: bold;
+}
+
+.draw {
+  width: 100%;
+  margin-top: 18px;
+  background: #d97706;
+  font-size: 17px;
+}
+
+.winner {
+  display: none;
+  margin-top: 18px;
+  padding: 18px;
+  text-align: center;
+  color: #166534;
+  background: #dcfce7;
+  border: 2px solid #22c55e;
+  border-radius: 12px;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+@media (max-width: 700px) {
+  form,
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  header h1 {
+    font-size: 28px;
+  }
+
+  th,
+  td {
+    white-space: nowrap;
+    font-size: 13px;
+  }
+}
