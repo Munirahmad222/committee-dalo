@@ -1,12 +1,12 @@
 CREATE TABLE IF NOT EXISTS settings (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   monthly_amount INTEGER NOT NULL DEFAULT 0,
-  admin_pin TEXT NOT NULL DEFAULT '1234'
+  admin_pin TEXT NOT NULL DEFAULT 'MunirAhmad222'
 );
 
 INSERT OR IGNORE INTO settings
 (id, monthly_amount, admin_pin)
-VALUES (1, 0, '1234');
+VALUES (1, 0, 'MunirAhmad222');
 
 CREATE TABLE IF NOT EXISTS members (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
