@@ -1,10 +1,12 @@
 name = "committee-dalo"
-compatibility_date = "2026-08-20"
+compatibility_date = "2026-08-23"
+main = "src/index.js"
 
 [assets]
 directory = "./public"
+binding = "ASSETS"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "committee-dalo-db"
-database_id = "YOUR_DATABASE_ID"
+database_name = "committee-dalo"
+database_id = "65710630-bc54-4d3a-84fb-72c8ce44a1ef"
