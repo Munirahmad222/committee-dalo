@@ -61,16 +61,17 @@ export async function handleApi(request, env, path) {
       const name = String(body.name || "").trim();
       const phone = String(body.phone || "").trim();
 
-      if (!name || !pakistanPhone(phone)) {
-        return json({
-          error: "نام اور درست پاکستانی موبائل نمبر درج کریں"
-        }, 400);
+      if (!name) {
+        return json({ error: "ممبر کا نام درج کریں" }, 400);
+      }
+      if (phone && !pakistanPhone(phone)) {
+        return json({ error: "موبائل نمبر درست پاکستانی فارمیٹ میں ہونا چاہیے" }, 400);
       }
 
       await env.DB.prepare(`
         INSERT INTO members (name, phone)
         VALUES (?, ?)
-      `).bind(name, phone).run();
+      `).bind(name, phone || null).run();
 
       return json({ success: true });
     }
