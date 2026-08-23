@@ -76,6 +76,38 @@ export async function handleApi(request, env, path) {
       return json({ success: true });
     }
 
+    if (method === "PUT" && path.match(/^\/members\/\d+$/)) {
+      const memberId = Number(path.split("/")[2]);
+      const body = await request.json();
+      const name = String(body.name || "").trim();
+      const phone = String(body.phone || "").trim();
+
+      if (!name) {
+        return json({ error: "ممبر کا نام درج کریں" }, 400);
+      }
+      if (phone && !pakistanPhone(phone)) {
+        return json({ error: "موبائل نمبر درست پاکستانی فارمیٹ میں ہونا چاہیے" }, 400);
+      }
+
+      await env.DB.prepare(`
+        UPDATE members SET name = ?, phone = ? WHERE id = ?
+      `).bind(name, phone || null, memberId).run();
+
+      return json({ success: true });
+    }
+
+    if (method === "DELETE" && path.match(/^\/members\/\d+$/)) {
+      const memberId = Number(path.split("/")[2]);
+
+      // soft delete: member ka record rakha jata hai (purani payments/history ke liye)
+      // lekin ab wo naye mahinon mein shamil nahi hoga
+      await env.DB.prepare(`
+        UPDATE members SET active = 0 WHERE id = ?
+      `).bind(memberId).run();
+
+      return json({ success: true });
+    }
+
     if (method === "POST" && path === "/months") {
       const body = await request.json();
       const monthName = String(body.month_name || "").trim();
