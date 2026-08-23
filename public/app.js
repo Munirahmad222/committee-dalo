@@ -42,7 +42,7 @@ async function loadDashboard() {
     $("membersTable").innerHTML = members.map(member => `
       <tr>
         <td>${escapeHtml(member.name)}</td>
-        <td>${escapeHtml(member.phone)}</td>
+        <td>${member.phone ? escapeHtml(member.phone) : "—"}</td>
         <td>
           <input
             type="checkbox"
