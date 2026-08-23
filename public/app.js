@@ -53,6 +53,10 @@ async function loadDashboard() {
         <td class="${member.paid == 1 ? "paid" : "unpaid"}">
           ${member.paid == 1 ? "ادا شدہ" : "بقایا"}
         </td>
+        <td>
+          <button type="button" class="secondary" onclick="editMember(${member.id}, '${escapeAttr(member.name)}', '${escapeAttr(member.phone || "")}')">ترمیم</button>
+          <button type="button" class="secondary danger" onclick="deleteMember(${member.id}, '${escapeAttr(member.name)}')">حذف</button>
+        </td>
       </tr>
     `).join("");
 
@@ -181,6 +185,43 @@ function showWinner(winner) {
     فاتح: ${escapeHtml(winner.name)}<br>
     موبائل: ${escapeHtml(winner.phone)}
   `;
+}
+
+async function editMember(memberId, currentName, currentPhone) {
+  const newName = prompt("ممبر کا نام:", currentName);
+  if (newName === null) return;
+
+  const newPhone = prompt("موبائل نمبر (خالی چھوڑ سکتے ہیں):", currentPhone);
+  if (newPhone === null) return;
+
+  try {
+    await api(`members/${memberId}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        name: newName.trim(),
+        phone: newPhone.trim()
+      })
+    });
+
+    await loadDashboard();
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+async function deleteMember(memberId, name) {
+  if (!confirm(`کیا آپ "${name}" کو کمیٹی سے نکالنا چاہتے ہیں؟\nاگلے مہینوں میں یہ ممبر شامل نہیں ہوگا۔`)) return;
+
+  try {
+    await api(`members/${memberId}`, { method: "DELETE" });
+    await loadDashboard();
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+function escapeAttr(value) {
+  return String(value).replace(/'/g, "\\'");
 }
 
 function escapeHtml(value) {
