@@ -171,3 +171,19 @@ th {
     font-size: 13px;
   }
 }
+
+table button.secondary {
+  min-height: 32px;
+  padding: 4px 10px;
+  font-size: 12px;
+  margin: 2px;
+  background: #64748b;
+}
+
+table button.secondary.danger {
+  background: #dc2626;
+}
+
+table button.secondary:hover {
+  opacity: 0.9;
+}
